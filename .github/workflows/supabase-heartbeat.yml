@@ -17,7 +17,7 @@ jobs:
           SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           QUERYBY: ${{ secrets.QUERYBY }}
         run: |
-          curl GET "$SUPABASE_URL/rest/v1/InterestRate?select=id,rate,type&limit=1" \
+          curl "$SUPABASE_URL/rest/v1/InterestRate?select=id,rate,type&limit=1" \
             -H "apikey: $SUPABASE_KEY" \
             -H "Authorization: Bearer $SUPABASE_KEY" \
             -H "Content-Type: application/json" \
