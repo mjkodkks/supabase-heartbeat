@@ -3,7 +3,7 @@ name: Supabase Heartbeat
 on:
   schedule:
     # Runs at 00:00 UTC every day
-    - cron: '0 15 * * *'
+    - cron: '0 11 * * *'
   # Allows manual triggering
   workflow_dispatch:
 
