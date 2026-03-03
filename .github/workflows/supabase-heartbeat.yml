@@ -1,0 +1,23 @@
+name: Supabase Heartbeat
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every day
+    - cron: '0 15 * * *'
+  # Allows manual triggering
+  workflow_dispatch:
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Heartbeat to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          QUERYBY: ${{ secrets.QUERYBY }}
+        run: |
+          curl -v -X POST "$SUPABASE_URL/rest/v1/$QUERYBY" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY" \
+            -H "Content-Type: application/json" \
